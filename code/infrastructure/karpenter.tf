@@ -7,8 +7,7 @@ module "karpenter" {
   irsa_oidc_provider_arn          = module.eks.oidc_provider_arn
   irsa_namespace_service_accounts = ["karpenter:karpenter"]
 
-  # Since Karpenter is running on an EKS Managed Node group,
-  # we can re-use the role that was created for the node group
   create_iam_role = false
   iam_role_arn    = module.eks.eks_managed_node_groups["initial"].iam_role_arn
 }
+
